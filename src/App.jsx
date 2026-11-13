@@ -45,11 +45,16 @@ export default function App() {
   if (authenticated) return <Dashboard onSessionExpired={() => setAuthenticated(false)} />;
   return (
     <main className="login-page">
-      <section className="panel login-card">
-        <span className="brand-icon">✚</span>
-        <p className="eyebrow">BOTICA NOVA SALUD</p>
-        <h1>Bienvenido.</h1>
-        <p className="muted">Ingresa para administrar el inventario y las ventas.</p>
+      <div className="login-decoration login-decoration-one" />
+      <div className="login-decoration login-decoration-two" />
+      <section className="login-card">
+        <div className="login-brand">
+          <span className="brand-icon">✚</span>
+          <span>Nova Salud<small>GESTIÓN DE BOTICA</small></span>
+        </div>
+        <p className="eyebrow">PORTAL DE ADMINISTRACIÓN</p>
+        <h1>Tu botica,<br />bajo control.</h1>
+        <p className="muted">Inicia sesión para gestionar el inventario y atender cada venta.</p>
         <form onSubmit={login} className="form-grid">
           <label>
             Usuario
@@ -70,8 +75,8 @@ export default function App() {
               {error}
             </p>
           )}
-          <button className="primary" disabled={busy}>
-            {busy ? 'Ingresando…' : 'Iniciar sesión'}
+          <button className="primary login-submit" disabled={busy}>
+            {busy ? 'Verificando acceso…' : 'Entrar al sistema'}
           </button>
         </form>
       </section>

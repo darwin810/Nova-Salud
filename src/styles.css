@@ -617,3 +617,50 @@ footer span {
     display: none;
   }
 }
+
+/* Acceso de Nova Salud */
+.login-page {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 15% 20%, #e4f4ec 0, transparent 38%),
+    radial-gradient(ellipse at 90% 80%, #eaf2e8 0, transparent 35%), #f8faf7;
+}
+.login-decoration {
+  position: absolute;
+  z-index: -1;
+  width: 310px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(35, 104, 74, .12);
+  border-radius: 42% 58% 58% 42%;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.login-decoration-one { left: -140px; top: -150px; transform: rotate(35deg); }
+.login-decoration-two { right: -140px; bottom: -170px; width: 420px; animation-delay: -7s; }
+.login-card {
+  position: relative;
+  width: min(100%, 460px);
+  padding: 44px;
+  border: 1px solid rgba(216, 229, 219, .9);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 30px 90px rgba(38, 72, 53, .11);
+  animation: rise-in .55s cubic-bezier(.2,.75,.25,1) both;
+}
+.login-brand { display: flex; align-items: center; gap: 12px; color: #183e2e; font-size: 17px; font-weight: 750; letter-spacing: -.45px; }
+.login-brand small { display: block; margin-top: 4px; color: #83948a; font-size: 9px; letter-spacing: 1.6px; }
+.login-brand .brand-icon { border-radius: 13px; box-shadow: 0 8px 20px rgba(22,107,80,.2); }
+.login-card > .eyebrow { margin: 40px 0 10px; color: #58826b; font-size: 10px; letter-spacing: 1.6px; }
+.login-card h1 { margin: 0; color: #1d3428; font-size: clamp(36px, 7vw, 47px); font-weight: 650; letter-spacing: -2.3px; line-height: 1.08; }
+.login-card > .muted { max-width: 330px; margin: 15px 0 27px; color: #718078; font-size: 13px; }
+.login-card .form-grid { gap: 16px; margin: 0; }
+.login-card .form-grid label { color: #334a3c; font-size: 12px; font-weight: 650; }
+.login-card .form-grid input { height: 46px; margin-top: 8px; border-color: #dbe5dc; border-radius: 9px; background: #fbfdfb; transition: border-color .18s, box-shadow .18s, background .18s; }
+.login-card .form-grid input:focus { border-color: #5b9b77; background: white; box-shadow: 0 0 0 4px rgba(62,139,95,.1); outline: 0; }
+.login-submit { width: 100%; min-height: 47px; margin-top: 4px; border-radius: 9px; box-shadow: 0 8px 18px rgba(19,94,65,.16); transition: transform .18s, box-shadow .18s, background .18s; }
+.login-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(19,94,65,.22); }
+.login-error { padding: 11px 12px; border: 1px solid #f0cccc; border-radius: 8px; background: #fff6f5; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(14px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes drift { to { transform: translate(25px, -18px) rotate(70deg); } }
+@media (max-width: 520px) { .login-card { padding: 32px 25px; border-radius: 18px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
