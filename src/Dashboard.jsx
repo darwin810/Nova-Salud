@@ -543,6 +543,7 @@ export default function Dashboard({ onSessionExpired }) {
                   <thead>
                     <tr>
                       <th>Operación</th>
+                      <th>Cliente</th>
                       <th>Fecha y hora</th>
                       <th>Productos</th>
                       <th>Total</th>
@@ -554,6 +555,7 @@ export default function Dashboard({ onSessionExpired }) {
                         <td>
                           <strong>Venta {sale.id.slice(0, 8)}</strong>
                         </td>
+                        <td>{sale.customerName || 'Cliente general'}</td>
                         <td>
                           {new Date(sale.date).toLocaleString('es-PE', {
                             timeZone: 'America/Lima',

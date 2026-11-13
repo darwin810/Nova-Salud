@@ -111,7 +111,7 @@ export async function saveProduct(db, body) {
 
 export async function createSale(db, body) {
   const { id, customerName, items } = saleInput(body);
-  const hash = digest(JSON.stringify({ customerName, items }));
+  const hash = digest(JSON.stringify(customerName ? { customerName, items } : items));
   const existingResult = (sale) => {
     ensure(sale.request_hash === hash, 'Este identificador ya pertenece a otra venta.', 409);
     return { sale: saleView(sale) };
