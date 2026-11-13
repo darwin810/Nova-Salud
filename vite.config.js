@@ -22,5 +22,10 @@ export default defineConfig(({ mode }) => ({
       },
     },
   ],
-  server: { port: 5173, strictPort: true },
+  server: {
+    port: 5173,
+    strictPort: true,
+    fs: { deny: ['.env', '.env.*', '*.{crt,pem}', '**/.git/**', '**/.local/**'] },
+    watch: { ignored: ['**/.local/**'] },
+  },
 }));
