@@ -114,3 +114,5 @@ La prueba crea una base con nombre aleatorio `nova_test_...` y elimina solo esa 
 ## Alcance y puesta en marcha
 
 El código incluye controles para operar el inventario con un administrador, pero la puesta en producción depende de configurar MongoDB Atlas y Vercel, aplicar la migración y verificar el despliegue real. No se incluyen facturación electrónica, devoluciones, lotes/vencimientos ni control de medicamentos regulados. Las ventas registradas son operaciones internas, no comprobantes fiscales. El catálogo se carga completo; para catálogos muy grandes será necesario paginar también productos.
+#   b o t i c a s  
+ 
