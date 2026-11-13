@@ -11,7 +11,13 @@ const productView = (p) => ({
   minimum: p.minimum,
   version: p.version,
 });
-const saleView = (s) => ({ id: s._id, date: s.date, items: s.items, total: s.total_cents / 100 });
+const saleView = (s) => ({
+  id: s._id,
+  date: s.date,
+  customerName: s.customer_name || '',
+  items: s.items,
+  total: s.total_cents / 100,
+});
 
 export async function readInventory(db, page = 1) {
   return transaction(db, async (session) => {
@@ -104,8 +110,8 @@ export async function saveProduct(db, body) {
 }
 
 export async function createSale(db, body) {
-  const { id, items } = saleInput(body);
-  const hash = digest(JSON.stringify(items));
+  const { id, customerName, items } = saleInput(body);
+  const hash = digest(JSON.stringify({ customerName, items }));
   const existingResult = (sale) => {
     ensure(sale.request_hash === hash, 'Este identificador ya pertenece a otra venta.', 409);
     return { sale: saleView(sale) };
@@ -158,6 +164,7 @@ export async function createSale(db, body) {
       const sale = {
         _id: id,
         request_hash: hash,
+        customer_name: customerName,
         items: detail,
         total_cents: total,
         date: new Date(),

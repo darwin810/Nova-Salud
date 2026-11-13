@@ -49,6 +49,8 @@ export function productInput(body) {
 }
 export function saleInput(body) {
   const id = uuid(body.id);
+  const customerName = typeof body.customerName === 'string' ? body.customerName.trim() : '';
+  ensure(customerName.length <= 100, 'El nombre del cliente admite hasta 100 caracteres.');
   ensure(
     Array.isArray(body.items) && body.items.length > 0 && body.items.length <= 100,
     'La venta debe tener entre 1 y 100 productos.',
@@ -64,5 +66,5 @@ export function saleInput(body) {
     })
     .sort((a, b) => a.id.localeCompare(b.id));
   ensure(new Set(items.map((i) => i.id)).size === items.length, 'Hay productos repetidos.');
-  return { id, items };
+  return { id, customerName, items };
 }

@@ -15,7 +15,7 @@ export async function withDatabase(
       serverSelectionTimeoutMS: 10000,
       connectTimeoutMS: 10000,
       waitQueueTimeoutMS: 10000,
-      appName: 'nova-salud',
+      appName: 'boticas',
       ...(uri.startsWith('mongodb+srv:') || process.env.NODE_ENV === 'production'
         ? {
             tls: true,

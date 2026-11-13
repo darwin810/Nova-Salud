@@ -34,6 +34,7 @@ export default function Dashboard({ onSessionExpired }) {
   const [onlyLow, setOnlyLow] = useState(false);
   const [form, setForm] = useState(null);
   const [cart, setCart] = useState(() => readPending()?.items || []);
+  const [customerName, setCustomerName] = useState(() => readPending()?.customerName || '');
   const [pendingSale, setPendingSale] = useState(readPending);
   const [busy, setBusy] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -147,6 +148,7 @@ export default function Dashboard({ onSessionExpired }) {
     try {
       const payload = pendingSale || {
         id: crypto.randomUUID(),
+        customerName: customerName.trim(),
         items: cart.map(({ id, quantity, priceCents }) => ({ id, quantity, priceCents })),
       };
       // Keep the UUID across a lost response or a page reload; retries cannot charge twice.
@@ -156,6 +158,7 @@ export default function Dashboard({ onSessionExpired }) {
       sessionStorage.removeItem(pendingKey);
       setPendingSale(null);
       setCart([]);
+      setCustomerName('');
       setMessage('Venta registrada. El stock se actualizó correctamente.');
       await refresh(1).catch((error) => {
         setMessage('Venta registrada. No se pudo actualizar la vista; pulsa Actualizar.');
@@ -467,6 +470,17 @@ export default function Dashboard({ onSessionExpired }) {
               {tab === 'Nueva venta' && (
                 <section className="panel cart">
                   <h2>Detalle de venta</h2>
+                  <label className="customer-field">
+                    Cliente (opcional)
+                    <input
+                      autoComplete="name"
+                      maxLength={100}
+                      placeholder="Nombre del cliente"
+                      value={customerName}
+                      disabled={busy || !!pendingSale}
+                      onChange={(event) => setCustomerName(event.target.value)}
+                    />
+                  </label>
                   {cart.length === 0 && (
                     <p className="empty">Agrega productos del catálogo para comenzar.</p>
                   )}

@@ -5,7 +5,7 @@ import { ensure } from './validation.js';
 const scrypt = promisify(scryptCallback);
 export const digest = (value) => createHash('sha256').update(value).digest('hex');
 const cookieName = () =>
-  process.env.NODE_ENV === 'production' ? '__Host-nova-session' : 'nova-session';
+  process.env.NODE_ENV === 'production' ? '__Host-boticas-session' : 'boticas-session';
 export const credentialHash = () =>
   digest(`${process.env.ADMIN_USERNAME}:${process.env.ADMIN_PASSWORD_HASH}`);
 
